@@ -95,4 +95,16 @@ export class GestorEstudiantes {
         });
         return resultados;
       };
+      totalEstudiantes() {
+        return this.estudiantes.length;
+      }
+    
+      reporteRendimientoAcademico() {
+        return {
+          totalEstudiantes: this.totalEstudiantes(),
+          promedioGeneral: this.promedioGeneralGrupo(),
+          mejoresEstudiantes: this.estudiantesConPromedioMayor(85),
+          peoresEstudiantes: this.estudiantesConPromedioMayor(60),
+        };
+      }
 }
