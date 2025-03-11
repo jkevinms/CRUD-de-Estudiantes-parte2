@@ -36,5 +36,13 @@ export class GestorEstudiantes {
       buscarEstudiante(criterio) {
         return this.estudiantes.find(p => p.id === criterio || p.nombre.toLowerCase() === criterio.toLowerCase());
       }
+      promedioPorEstudiante() {
+        return this.estudiantes.map(e => {
+          const notas = Object.values(e.calificaciones || {});
+          const promedio = notas.length ? (notas.reduce((acc, val) => acc + val, 0) / notas.length) : 0;
+          return { nombre: e.nombre, promedio: promedio.toFixed(2), nivel: e.nivel };
+        });
+      }
+    
 
 }
