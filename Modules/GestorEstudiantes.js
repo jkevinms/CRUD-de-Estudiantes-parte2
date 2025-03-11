@@ -29,5 +29,12 @@ export class GestorEstudiantes {
         }
         return false;
       }    
+      listarEstudiantes() {
+        return this.estudiantes.map(p => ({ nombre: p.nombre, nivel: p.nivel }));
+      }
+    
+      buscarEstudiante(criterio) {
+        return this.estudiantes.find(p => p.id === criterio || p.nombre.toLowerCase() === criterio.toLowerCase());
+      }
 
 }
