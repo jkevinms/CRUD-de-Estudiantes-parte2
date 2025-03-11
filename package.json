@@ -1,0 +1,11 @@
+{
+  "name": "crud-estudiantes",
+  "version": "1.0.0",
+  "description": "parte 2 del crud de estudiantes ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Moreno",
+  "license": "ISC"
+}
