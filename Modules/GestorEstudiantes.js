@@ -19,7 +19,7 @@ export class GestorEstudiantes {
           }
         }
         return false;
-      }
+      };
       eliminar(id) {
         for (let i = 0; i < this.estudiantes.length; i++) {
           if (this.estudiantes[i].id === id) {
@@ -28,14 +28,14 @@ export class GestorEstudiantes {
           }
         }
         return false;
-      }    
+      } ;   
       listarEstudiantes() {
         return this.estudiantes.map(p => ({ nombre: p.nombre, nivel: p.nivel }));
-      }
-    
+      };
+
       buscarEstudiante(criterio) {
         return this.estudiantes.find(p => p.id === criterio || p.nombre.toLowerCase() === criterio.toLowerCase());
-      }
+      };
       promedioPorEstudiante() {
         return this.estudiantes.map(e => {
           const notas = Object.values(e.calificaciones || {});
@@ -45,7 +45,7 @@ export class GestorEstudiantes {
       }
       estudiantesConPromedioMayor(umbral) {
         return this.promedioPorEstudiante().filter(e => parseFloat(e.promedio) > umbral);
-      }
+      };
     
       aprobadosYReprobadosPorMateria(materia, umbral = 60) {
         const resultados = { aprobados: [], reprobados: [] };
@@ -60,10 +60,21 @@ export class GestorEstudiantes {
           }
         });
         return resultados;
-      }
+      };
       promedioGeneralGrupo() {
         const calificacionesTotales = this.estudiantes.flatMap(e => Object.values(e.calificaciones || {}));
         const promedio = calificacionesTotales.reduce((acc, val) => acc + val, 0) / calificacionesTotales.length;
         return promedio.toFixed(2);
-      }
+      };
+      distribucionPorArea() {
+        return this.estudiantes.reduce((acc, e) => {
+          acc[e.nivel] = (acc[e.nivel] || 0) + 1;
+          return acc;
+        }, {});
+      };
+    
+      rankingPorPromedio() {
+        return this.promedioPorEstudiante().sort((a, b) => b.promedio - a.promedio);
+      };
+    
 }
